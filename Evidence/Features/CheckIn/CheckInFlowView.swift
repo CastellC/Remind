@@ -57,9 +57,12 @@ struct CheckInFlowView: View {
     private func completeAndContinue() async {
         guard let emotion = viewModel.emotion, let need = viewModel.supportNeed else { return }
 
+        let trimmedNote = viewModel.optionalNote.trimmingCharacters(in: .whitespacesAndNewlines)
+        let noteForSave: String? = trimmedNote.isEmpty ? nil : trimmedNote
+
         var safety = SafetyState.standard
-        if let note = viewModel.optionalNote, !note.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            safety = container.safetyDetector.evaluate(note)
+        if let noteForSave {
+            safety = container.safetyDetector.evaluate(noteForSave)
         }
 
         let profile = await container.ensureProfile()
@@ -68,7 +71,7 @@ struct CheckInFlowView: View {
             emotion: emotion,
             intensity: viewModel.intensity,
             supportNeed: need,
-            optionalNote: viewModel.optionalNote,
+            optionalNote: noteForSave,
             keepNoteLocalOnly: viewModel.keepNoteLocalOnly || profile.keepCheckInNotesLocalOnly,
             safetyState: safety,
             syncStatus: profile.cloudSyncEnabled ? .pendingUpload : .localOnly

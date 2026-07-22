@@ -16,21 +16,21 @@ struct NotificationSettingsView: View {
     @State private var isSaving = false
 
     private var profile: AppProfile? { profiles.first }
-    private var schedule: ReminderSchedule? { schedules.first }
+    private var existingSchedule: ReminderSchedule? { schedules.first }
 
     var body: some View {
         Form {
-            Section(
-                footer: Text(String(localized: "notifications.explain", defaultValue: "Evidence asks for permission only when you turn reminders on."))
-            ) {
+            Section {
                 Toggle(
                     String(localized: "notifications.enable", defaultValue: "Enable reminders"),
                     isOn: $isEnabled
                 )
+            } footer: {
+                Text(String(localized: "notifications.explain", defaultValue: "Evidence asks for permission only when you turn reminders on."))
             }
 
             if isEnabled {
-                Section(String(localized: "notifications.schedule", defaultValue: "Schedule")) {
+                Section {
                     DatePicker(
                         String(localized: "notifications.time", defaultValue: "Time"),
                         selection: $deliveryDate,
@@ -41,12 +41,11 @@ struct NotificationSettingsView: View {
                             Text(item.displayName).tag(item)
                         }
                     }
+                } header: {
+                    Text(String(localized: "notifications.schedule", defaultValue: "Schedule"))
                 }
 
-                Section(
-                    String(localized: "notifications.preview", defaultValue: "Preview privacy"),
-                    footer: Text(String(localized: "notifications.preview.warn", defaultValue: "Title-only and full-content previews may be visible to other people nearby."))
-                ) {
+                Section {
                     Picker(String(localized: "notifications.preview.mode", defaultValue: "Preview"), selection: $previewMode) {
                         ForEach(NotificationPreviewMode.allCases) { mode in
                             Text(mode.displayName).tag(mode)
@@ -55,22 +54,21 @@ struct NotificationSettingsView: View {
                     Text(previewMode.detailExplanation)
                         .font(.evidenceCaption())
                         .foregroundStyle(EvidenceFallbackColors.muted)
+                } header: {
+                    Text(String(localized: "notifications.preview", defaultValue: "Preview privacy"))
+                } footer: {
+                    Text(String(localized: "notifications.preview.warn", defaultValue: "Title-only and full-content previews may be visible to other people nearby."))
                 }
 
                 if !categories.isEmpty {
-                    Section(
-                        String(localized: "notifications.categories", defaultValue: "Eligible categories"),
-                        footer: Text(String(localized: "notifications.categories.footer", defaultValue: "Leave all unchecked to allow every category."))
-                    ) {
+                    Section {
                         ForEach(categories, id: \.id) { category in
-                            Toggle(category.name, isOn: Binding(
-                                get: { allowedCategoryIDs.contains(category.id) },
-                                set: { on in
-                                    if on { allowedCategoryIDs.insert(category.id) }
-                                    else { allowedCategoryIDs.remove(category.id) }
-                                }
-                            ))
+                            Toggle(category.name, isOn: categoryBinding(for: category.id))
                         }
+                    } header: {
+                        Text(String(localized: "notifications.categories", defaultValue: "Eligible categories"))
+                    } footer: {
+                        Text(String(localized: "notifications.categories.footer", defaultValue: "Leave all unchecked to allow every category."))
                     }
                 }
             }
@@ -84,27 +82,45 @@ struct NotificationSettingsView: View {
             }
 
             Section {
-                PrimaryButton(
-                    title: String(localized: "action.save", defaultValue: "Save"),
-                    isLoading: isSaving
-                ) {
+                Button {
                     Task { await save() }
+                } label: {
+                    if isSaving {
+                        ProgressView()
+                            .frame(maxWidth: .infinity)
+                    } else {
+                        Text(String(localized: "action.save", defaultValue: "Save"))
+                            .frame(maxWidth: .infinity)
+                    }
                 }
-                .listRowInsets(EdgeInsets())
-                .listRowBackground(Color.clear)
+                .disabled(isSaving)
+                .accessibilityLabel(String(localized: "action.save", defaultValue: "Save"))
             }
         }
         .navigationTitle(String(localized: "notifications.nav", defaultValue: "Notifications"))
         .task { load() }
     }
 
+    private func categoryBinding(for id: UUID) -> Binding<Bool> {
+        Binding(
+            get: { allowedCategoryIDs.contains(id) },
+            set: { on in
+                if on {
+                    allowedCategoryIDs.insert(id)
+                } else {
+                    allowedCategoryIDs.remove(id)
+                }
+            }
+        )
+    }
+
     private func load() {
-        if let schedule {
-            isEnabled = schedule.isEnabled
-            frequency = schedule.frequency
-            allowedCategoryIDs = Set(schedule.allowedCategoryIDs)
+        if let existingSchedule {
+            isEnabled = existingSchedule.isEnabled
+            frequency = existingSchedule.frequency
+            allowedCategoryIDs = Set(existingSchedule.allowedCategoryIDs)
             deliveryDate = Calendar.current.date(
-                from: DateComponents(hour: schedule.deliveryHour, minute: schedule.deliveryMinute)
+                from: DateComponents(hour: existingSchedule.deliveryHour, minute: existingSchedule.deliveryMinute)
             ) ?? deliveryDate
         }
         previewMode = profile?.notificationPreviewMode ?? .generic
@@ -133,15 +149,15 @@ struct NotificationSettingsView: View {
             }
         }
 
-        let schedule = schedule ?? ReminderSchedule()
-        schedule.isEnabled = isEnabled
-        schedule.deliveryHour = hour
-        schedule.deliveryMinute = minute
-        schedule.frequency = frequency
-        schedule.allowedCategoryIDs = Array(allowedCategoryIDs)
-        schedule.genericPreviewOnly = previewMode == .generic
-        schedule.touch()
-        try? await container.reminderRepository.save(schedule)
+        let scheduleToSave = existingSchedule ?? ReminderSchedule()
+        scheduleToSave.isEnabled = isEnabled
+        scheduleToSave.deliveryHour = hour
+        scheduleToSave.deliveryMinute = minute
+        scheduleToSave.frequency = frequency
+        scheduleToSave.allowedCategoryIDs = Array(allowedCategoryIDs)
+        scheduleToSave.genericPreviewOnly = previewMode == .generic
+        scheduleToSave.touch()
+        try? await container.reminderRepository.save(scheduleToSave)
 
         if let existing = profile {
             existing.notificationPreviewMode = previewMode
@@ -156,7 +172,7 @@ struct NotificationSettingsView: View {
 
         let entries = (try? await container.entryRepository.fetchAll(includeArchived: false)) ?? []
         try? await container.notifications.reschedule(
-            from: schedule,
+            from: scheduleToSave,
             entries: entries,
             previewMode: previewMode
         )

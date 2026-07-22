@@ -11,14 +11,7 @@ struct ExportView: View {
 
     var body: some View {
         Form {
-            Section(
-                footer: Text(
-                    String(
-                        localized: "export.footer",
-                        defaultValue: "Exports profile preferences, categories, tags, entries, meaningful dates, feedback metadata, and images into a folder you can share."
-                    )
-                )
-            ) {
+            Section {
                 PrimaryButton(
                     title: String(localized: "export.local", defaultValue: "Export local data"),
                     isLoading: isExporting
@@ -27,6 +20,13 @@ struct ExportView: View {
                 }
                 .listRowInsets(EdgeInsets())
                 .listRowBackground(Color.clear)
+            } footer: {
+                Text(
+                    String(
+                        localized: "export.footer",
+                        defaultValue: "Exports profile preferences, categories, tags, entries, meaningful dates, feedback metadata, and images into a folder you can share."
+                    )
+                )
             }
 
             if let message {
@@ -90,14 +90,7 @@ struct DeleteDataView: View {
 
     var body: some View {
         Form {
-            Section(
-                footer: Text(
-                    String(
-                        localized: "deleteData.footer",
-                        defaultValue: "Deletion is permanent. Evidence will explain the outcome, including partial failures."
-                    )
-                )
-            ) {
+            Section {
                 Toggle(
                     String(localized: "deleteData.resetOnboarding", defaultValue: "Reset onboarding after local delete"),
                     isOn: $resetOnboarding
@@ -109,6 +102,13 @@ struct DeleteDataView: View {
                     confirmCloud = true
                 }
                 .disabled(!container.authentication.isAuthenticated)
+            } footer: {
+                Text(
+                    String(
+                        localized: "deleteData.footer",
+                        defaultValue: "Deletion is permanent. Evidence will explain the outcome, including partial failures."
+                    )
+                )
             }
 
             if let reportMessage {
@@ -186,14 +186,7 @@ struct DeleteAccountView: View {
 
     var body: some View {
         Form {
-            Section(
-                footer: Text(
-                    String(
-                        localized: "deleteAccount.footer",
-                        defaultValue: "This deletes your account and associated remote content when the server confirms it, and clears local Evidence data."
-                    )
-                )
-            ) {
+            Section {
                 Text(
                     String(
                         localized: "deleteAccount.prompt",
@@ -207,6 +200,13 @@ struct DeleteAccountView: View {
                     confirm = true
                 }
                 .disabled(typedConfirmation != requiredPhrase || !container.authentication.isAuthenticated)
+            } footer: {
+                Text(
+                    String(
+                        localized: "deleteAccount.footer",
+                        defaultValue: "This deletes your account and associated remote content when the server confirms it, and clears local Evidence data."
+                    )
+                )
             }
 
             if let message {

@@ -14,15 +14,7 @@ struct MeaningfulDateSettingsView: View {
 
     var body: some View {
         Form {
-            Section(
-                String(localized: "meaningful.explain.title", defaultValue: "Meaningful dates"),
-                footer: Text(
-                    String(
-                        localized: "meaningful.explain",
-                        defaultValue: "Remind me around this date. Evidence does not invent “on this day” memories."
-                    )
-                )
-            ) {
+            Section {
                 Picker(
                     String(localized: "meaningful.entry", defaultValue: "Evidence item"),
                     selection: $selectedEntryID
@@ -54,6 +46,15 @@ struct MeaningfulDateSettingsView: View {
                 }
                 .listRowInsets(EdgeInsets())
                 .listRowBackground(Color.clear)
+            } header: {
+                Text(String(localized: "meaningful.explain.title", defaultValue: "Meaningful dates"))
+            } footer: {
+                Text(
+                    String(
+                        localized: "meaningful.explain",
+                        defaultValue: "Remind me around this date. Evidence does not invent “on this day” memories."
+                    )
+                )
             }
 
             Section(String(localized: "meaningful.existing", defaultValue: "Existing reminders")) {

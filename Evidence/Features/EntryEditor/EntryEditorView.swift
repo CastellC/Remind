@@ -42,10 +42,7 @@ struct EntryEditorView: View {
             }
 
             if viewModel.entryType == .image {
-                Section(
-                    String(localized: "editor.image", defaultValue: "Image"),
-                    footer: Text(String(localized: "editor.image.meaningHint", defaultValue: "Describe what this image means to you in the meaning section below."))
-                ) {
+                Section {
                     PhotosPicker(
                         selection: $photoItem,
                         matching: .images,
@@ -71,13 +68,14 @@ struct EntryEditorView: View {
                         axis: .vertical
                     )
                     .lineLimit(2...4)
+                } header: {
+                    Text(String(localized: "editor.image", defaultValue: "Image"))
+                } footer: {
+                    Text(String(localized: "editor.image.meaningHint", defaultValue: "Describe what this image means to you in the meaning section below."))
                 }
             }
 
-            Section(
-                MeaningSuggestion.promptQuestion,
-                footer: Text(String(localized: "editor.meaning.required", defaultValue: "Required for personal entries. Future you needs to know why this matters."))
-            ) {
+            Section {
                 ForEach(MeaningSuggestion.allCases) { suggestion in
                     SupportNeedStyleRow(
                         title: suggestion.displayName,
@@ -99,12 +97,13 @@ struct EntryEditorView: View {
                     )
                     .lineLimit(2...5)
                 }
+            } header: {
+                Text(MeaningSuggestion.promptQuestion)
+            } footer: {
+                Text(String(localized: "editor.meaning.required", defaultValue: "Required for personal entries. Future you needs to know why this matters."))
             }
 
-            Section(
-                String(localized: "editor.tags", defaultValue: "When it may help"),
-                footer: Text(String(localized: "editor.tags.required", defaultValue: "Choose at least one emotion or support need."))
-            ) {
+            Section {
                 Text(String(localized: "editor.emotions", defaultValue: "Emotions"))
                     .font(.evidenceCaption().weight(.semibold))
                 FlexibleWrap {
@@ -129,6 +128,10 @@ struct EntryEditorView: View {
                         )
                     }
                 }
+            } header: {
+                Text(String(localized: "editor.tags", defaultValue: "When it may help"))
+            } footer: {
+                Text(String(localized: "editor.tags.required", defaultValue: "Choose at least one emotion or support need."))
             }
 
             Section(String(localized: "editor.optional", defaultValue: "Optional details")) {

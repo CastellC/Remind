@@ -143,14 +143,7 @@ struct ConflictResolutionView: View {
 
     var body: some View {
         List {
-            Section(
-                footer: Text(
-                    String(
-                        localized: "conflict.footer",
-                        defaultValue: "Choose keep local, keep cloud (mark for re-download on next sync), or keep both as duplicates."
-                    )
-                )
-            ) {
+            Section {
                 if conflicts.isEmpty {
                     Text(String(localized: "conflict.empty", defaultValue: "No conflicts right now."))
                         .foregroundStyle(EvidenceFallbackColors.muted)
@@ -178,6 +171,13 @@ struct ConflictResolutionView: View {
                         .padding(.vertical, EvidenceTheme.Spacing.xs)
                     }
                 }
+            } footer: {
+                Text(
+                    String(
+                        localized: "conflict.footer",
+                        defaultValue: "Choose keep local, keep cloud (mark for re-download on next sync), or keep both as duplicates."
+                    )
+                )
             }
             if let message {
                 Section {

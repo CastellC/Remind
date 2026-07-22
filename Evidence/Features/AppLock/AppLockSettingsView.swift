@@ -10,14 +10,7 @@ struct AppLockSettingsView: View {
 
     var body: some View {
         Form {
-            Section(
-                footer: Text(
-                    String(
-                        localized: "appLock.footer",
-                        defaultValue: "Uses Face ID, Touch ID, or your device passcode. Evidence does not create a separate password."
-                    )
-                )
-            ) {
+            Section {
                 Toggle(
                     String(
                         localized: "appLock.enable",
@@ -28,6 +21,13 @@ struct AppLockSettingsView: View {
                 .onChange(of: isEnabled) { _, newValue in
                     Task { await setEnabled(newValue) }
                 }
+            } footer: {
+                Text(
+                    String(
+                        localized: "appLock.footer",
+                        defaultValue: "Uses Face ID, Touch ID, or your device passcode. Evidence does not create a separate password."
+                    )
+                )
             }
 
             if !container.appLock.canUseBiometrics() {

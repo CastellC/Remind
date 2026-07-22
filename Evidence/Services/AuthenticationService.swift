@@ -18,7 +18,7 @@ protocol AuthenticationServing: AnyObject {
     func deleteAccount() async throws
 }
 
-enum AuthenticationError: Error, LocalizedError, Sendable {
+enum AuthenticationError: Error, LocalizedError, Equatable, Sendable {
     case notConfigured
     case invalidCredentials
     case sessionMissing

@@ -164,45 +164,37 @@ final class SyncCoordinator: SyncCoordinating {
     }
 
     private func merge(local: EvidenceEntry, remote: RemoteEvidenceEntryDTO) async throws {
-        let remoteUpdated = remote.updatedAt.value
-        let localUpdated = local.updatedAt
+        let decision = SyncConflictResolver.decide(
+            localUpdated: local.updatedAt,
+            remoteUpdated: remote.updatedAt.value,
+            localStatus: local.syncStatus
+        )
 
-        if local.syncStatus == .pendingUpload || local.syncStatus == .pendingDeletion {
-            // Local pending work wins until push completes; skip overwrite.
-            if localUpdated > remoteUpdated {
-                return
-            }
-        }
-
-        if abs(localUpdated.timeIntervalSince(remoteUpdated)) < 1 {
-            local.applyRemoteFields(from: remote)
-            try await dependencies.entryRepository.save(local)
+        switch decision {
+        case .skipOverwrite:
             return
-        }
-
-        if remoteUpdated > localUpdated {
-            // Preserve conflict copy before overwrite when local has unsynced edits.
-            if local.syncStatus == .failed || local.syncStatus == .conflict || local.syncStatus == .pendingUpload {
-                let copy = EvidenceEntry(
-                    title: local.title + " (local copy)",
-                    bodyText: local.bodyText,
-                    entryType: local.entryType,
-                    sourceType: local.sourceType,
-                    sourceName: local.sourceName,
-                    sourceContext: local.sourceContext,
-                    meaningPromptAnswer: local.meaningPromptAnswer,
-                    localImageFileName: local.localImageFileName,
-                    accessibilityDescription: local.accessibilityDescription,
-                    syncStatus: .conflict
-                )
-                copy.isFavorite = local.isFavorite
-                copy.isSensitive = local.isSensitive
-                try await dependencies.entryRepository.save(copy)
-            }
+        case .applyRemoteNearEqual, .preferRemote:
             local.applyRemoteFields(from: remote)
             try await dependencies.entryRepository.save(local)
-        } else {
-            // Local is newer — mark for upload.
+        case .preferRemoteWithLocalCopy:
+            let copy = EvidenceEntry(
+                title: local.title + " (local copy)",
+                bodyText: local.bodyText,
+                entryType: local.entryType,
+                sourceType: local.sourceType,
+                sourceName: local.sourceName,
+                sourceContext: local.sourceContext,
+                meaningPromptAnswer: local.meaningPromptAnswer,
+                localImageFileName: local.localImageFileName,
+                accessibilityDescription: local.accessibilityDescription,
+                syncStatus: .conflict
+            )
+            copy.isFavorite = local.isFavorite
+            copy.isSensitive = local.isSensitive
+            try await dependencies.entryRepository.save(copy)
+            local.applyRemoteFields(from: remote)
+            try await dependencies.entryRepository.save(local)
+        case .markLocalPendingUpload:
             local.syncStatus = .pendingUpload
             try await dependencies.entryRepository.save(local)
         }

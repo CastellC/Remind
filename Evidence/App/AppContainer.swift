@@ -124,11 +124,24 @@ final class AppContainer {
     }
 
     func ensureProfile() async -> AppProfile {
+        let profile: AppProfile
         if let existing = try? await profileRepository.fetchProfile() {
-            return existing
+            profile = existing
+        } else {
+            profile = AppProfile(id: environment.uuidProvider.makeUUID())
+            try? await profileRepository.save(profile)
         }
-        let profile = AppProfile(id: environment.uuidProvider.makeUUID())
-        try? await profileRepository.save(profile)
+
+        // UITest launch args: skip onboarding and keep the lock screen out of the way.
+        let args = ProcessInfo.processInfo.arguments
+        if args.contains("-UITesting") || args.contains("-SkipOnboarding") {
+            if profile.onboardingCompletedAt == nil {
+                profile.markOnboardingCompleted(at: environment.dateProvider.now)
+            }
+            profile.appLockEnabled = false
+            try? await profileRepository.save(profile)
+            environment.appLock.isLockEnabled = false
+        }
         return profile
     }
 

@@ -81,6 +81,7 @@ struct CollectionView: View {
                 text: $viewModel.searchText,
                 prompt: String(localized: "collection.search", defaultValue: "Search your collection")
             )
+            .accessibilityIdentifier("collection.search")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
@@ -242,15 +243,9 @@ final class CollectionViewModel {
                 guard names.contains(filterStrength.displayName.lowercased()) else { return false }
             }
             if !needle.isEmpty {
-                let haystacks: [String] = [
-                    entry.title,
-                    entry.bodyText ?? "",
-                    entry.meaningPromptAnswer,
-                    entry.sourceName ?? "",
-                    entry.categories.map(\.name).joined(separator: " "),
-                    entry.tags.map(\.name).joined(separator: " ")
-                ]
-                guard haystacks.joined(separator: " ").lowercased().contains(needle) else { return false }
+                guard EvidenceSearchService.matches(EvidenceSearchableFields(entry: entry), query: needle) else {
+                    return false
+                }
             }
             return true
         }

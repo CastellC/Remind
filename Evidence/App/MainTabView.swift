@@ -13,6 +13,7 @@ struct MainTabView: View {
                     )
                 }
                 .tag(MainTab.today)
+                .accessibilityIdentifier("tab.today")
 
             CollectionView()
                 .tabItem {
@@ -22,6 +23,7 @@ struct MainTabView: View {
                     )
                 }
                 .tag(MainTab.collection)
+                .accessibilityIdentifier("tab.collection")
 
             SettingsView()
                 .tabItem {
@@ -31,8 +33,10 @@ struct MainTabView: View {
                     )
                 }
                 .tag(MainTab.settings)
+                .accessibilityIdentifier("tab.settings")
         }
         .tint(EvidenceFallbackColors.accent)
+        .accessibilityIdentifier("main.tabs")
     }
 }
 

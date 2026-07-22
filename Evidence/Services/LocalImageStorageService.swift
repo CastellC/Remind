@@ -52,13 +52,6 @@ actor LocalImageStorageService: ImageStorageServing {
         displayCompression: CGFloat = 0.82,
         thumbnailCompression: CGFloat = 0.7
     ) throws {
-        self.fileManager = fileManager
-        self.uuidProvider = uuidProvider
-        self.displayMaxDimension = displayMaxDimension
-        self.thumbnailMaxDimension = thumbnailMaxDimension
-        self.displayCompression = displayCompression
-        self.thumbnailCompression = thumbnailCompression
-
         let appSupport = try fileManager.url(
             for: .applicationSupportDirectory,
             in: .userDomainMask,
@@ -66,11 +59,39 @@ actor LocalImageStorageService: ImageStorageServing {
             create: true
         )
         let directory = appSupport.appendingPathComponent("EvidenceImages", isDirectory: true)
-        if !fileManager.fileExists(atPath: directory.path) {
-            try fileManager.createDirectory(at: directory, withIntermediateDirectories: true)
+        try self.init(
+            directoryURL: directory,
+            fileManager: fileManager,
+            uuidProvider: uuidProvider,
+            displayMaxDimension: displayMaxDimension,
+            thumbnailMaxDimension: thumbnailMaxDimension,
+            displayCompression: displayCompression,
+            thumbnailCompression: thumbnailCompression
+        )
+    }
+
+    /// Designated initializer — pass a temp directory in unit tests.
+    init(
+        directoryURL: URL,
+        fileManager: FileManager = .default,
+        uuidProvider: UUIDProviding = SystemUUIDProvider(),
+        displayMaxDimension: CGFloat = 1600,
+        thumbnailMaxDimension: CGFloat = 400,
+        displayCompression: CGFloat = 0.82,
+        thumbnailCompression: CGFloat = 0.7
+    ) throws {
+        self.fileManager = fileManager
+        self.uuidProvider = uuidProvider
+        self.displayMaxDimension = displayMaxDimension
+        self.thumbnailMaxDimension = thumbnailMaxDimension
+        self.displayCompression = displayCompression
+        self.thumbnailCompression = thumbnailCompression
+
+        if !fileManager.fileExists(atPath: directoryURL.path) {
+            try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true)
         }
-        try Self.applyFileProtection(to: directory)
-        self.imagesDirectoryURL = directory
+        try? Self.applyFileProtection(to: directoryURL)
+        self.imagesDirectoryURL = directoryURL
     }
 
     func saveImageData(_ data: Data) async throws -> StoredImageFilenames {
@@ -126,20 +147,11 @@ actor LocalImageStorageService: ImageStorageServing {
     }
 
     func cleanupOrphans(knownFileNames: Set<String>) async throws -> Int {
-        let contents = try fileManager.contentsOfDirectory(
-            at: imagesDirectoryURL,
-            includingPropertiesForKeys: nil,
-            options: [.skipsHiddenFiles]
+        try ImageOrphanCleanup.cleanupOrphans(
+            in: imagesDirectoryURL,
+            knownFileNames: knownFileNames,
+            fileManager: fileManager
         )
-        var removed = 0
-        for url in contents {
-            let name = url.lastPathComponent
-            if !knownFileNames.contains(name) {
-                try fileManager.removeItem(at: url)
-                removed += 1
-            }
-        }
-        return removed
     }
 
     // MARK: - Private

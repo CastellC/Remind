@@ -89,6 +89,7 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle(String(localized: "settings.nav", defaultValue: "Settings"))
+            .accessibilityIdentifier("settings.root")
             .navigationDestination(for: AppRoute.self) { route in
                 settingsDestination(route)
             }

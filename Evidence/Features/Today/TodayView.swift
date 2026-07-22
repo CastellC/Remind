@@ -55,6 +55,7 @@ struct TodayView: View {
                             container.resetCheckInSession()
                             path.append(AppRoute.checkIn)
                         }
+                        .accessibilityIdentifier("today.checkIn")
 
                         SecondaryButton(
                             title: String(localized: "today.openCollection", defaultValue: "Open my collection")
@@ -67,6 +68,7 @@ struct TodayView: View {
                         ) {
                             path.append(AppRoute.entryEditor(.create))
                         }
+                        .accessibilityIdentifier("today.addEvidence")
 
                         SecondaryButton(
                             title: String(localized: "today.grounding", defaultValue: "Try a grounding exercise")

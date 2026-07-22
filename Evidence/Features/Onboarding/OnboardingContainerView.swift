@@ -22,6 +22,7 @@ struct OnboardingContainerView: View {
                             Button(String(localized: "onboarding.skip", defaultValue: "Skip for now")) {
                                 Task { await finish(skipped: true) }
                             }
+                            .accessibilityIdentifier("onboarding.skip")
                             .accessibilityHint(String(localized: "onboarding.skip.hint", defaultValue: "Skips remaining onboarding steps"))
                         }
                     }

@@ -47,15 +47,8 @@ final class LocalEvidenceEntryRepository: EvidenceEntryRepository {
     }
 
     func search(query: String) async throws -> [EvidenceEntry] {
-        let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else { return try await fetchAll(includeArchived: false) }
         let all = try await fetchAll(includeArchived: false)
-        let needle = trimmed.lowercased()
-        return all.filter { entry in
-            entry.title.lowercased().contains(needle)
-                || (entry.bodyText?.lowercased().contains(needle) ?? false)
-                || entry.meaningPromptAnswer.lowercased().contains(needle)
-        }
+        return EvidenceSearchService.filter(all, query: query) { EvidenceSearchableFields(entry: $0) }
     }
 
     func save(_ entry: EvidenceEntry) async throws {

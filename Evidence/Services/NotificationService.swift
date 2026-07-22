@@ -26,8 +26,8 @@ enum NotificationServiceError: Error, LocalizedError, Sendable {
 /// Authorization is requested only when `requestAuthorization()` is called explicitly.
 @MainActor
 final class LocalNotificationService: NotificationServing {
-    static let identifierPrefix = "evidence."
-    static let defaultBody = "A reminder from your collection is ready."
+    static let identifierPrefix = NotificationScheduleBuilder.identifierPrefix
+    static let defaultBody = NotificationScheduleBuilder.defaultBody
 
     private let center: UNUserNotificationCenter
     private let dateProvider: any DateProviding
@@ -70,48 +70,39 @@ final class LocalNotificationService: NotificationServing {
             return !categoryIDs.isDisjoint(with: Set(schedule.allowedCategoryIDs))
         }
 
-        let weekdays = schedule.effectiveWeekdays
-        guard !weekdays.isEmpty else { return }
+        let slots = NotificationScheduleBuilder.scheduleSlots(
+            weekdays: schedule.effectiveWeekdays,
+            hour: schedule.deliveryHour,
+            minute: schedule.deliveryMinute
+        )
+        guard !slots.isEmpty else { return }
 
-        // Schedule one request per weekday for the next cycle.
-        for weekday in weekdays {
-            let identifier = "\(Self.identifierPrefix)weekly.\(weekday).\(schedule.deliveryHour).\(schedule.deliveryMinute)"
+        for slot in slots {
             var dateComponents = DateComponents()
-            dateComponents.weekday = weekday
-            dateComponents.hour = schedule.deliveryHour
-            dateComponents.minute = schedule.deliveryMinute
+            dateComponents.weekday = slot.weekday
+            dateComponents.hour = slot.hour
+            dateComponents.minute = slot.minute
 
             let content = UNMutableNotificationContent()
             content.sound = .default
 
             let sample = eligible.randomElement()
-            let effectivePreview: NotificationPreviewMode =
-                schedule.genericPreviewOnly ? .generic : previewMode
-
-            switch effectivePreview {
-            case .generic:
-                content.title = "Evidence"
-                content.body = Self.defaultBody
-            case .titleOnly:
-                content.title = "Evidence"
-                content.body = sample?.title ?? Self.defaultBody
-            case .fullContent:
-                content.title = sample?.title ?? "Evidence"
-                if let body = sample?.bodyText, !body.isEmpty {
-                    content.body = body
-                } else if let meaning = sample?.meaningPromptAnswer, !meaning.isEmpty {
-                    content.body = meaning
-                } else {
-                    content.body = Self.defaultBody
-                }
-            }
+            let preview = NotificationScheduleBuilder.previewContent(
+                mode: previewMode,
+                entryTitle: sample?.title,
+                entryBody: sample?.bodyText,
+                meaningPromptAnswer: sample?.meaningPromptAnswer,
+                genericPreviewOnly: schedule.genericPreviewOnly
+            )
+            content.title = preview.title
+            content.body = preview.body
 
             if let sample {
                 content.userInfo = ["entryID": sample.id.uuidString]
             }
 
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-            let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+            let request = UNNotificationRequest(identifier: slot.identifier, content: content, trigger: trigger)
             try await center.add(request)
         }
 

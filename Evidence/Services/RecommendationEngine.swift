@@ -636,5 +636,3 @@ struct SeededGenerator: RandomNumberGenerator, Sendable {
         return state &* 0x2545F4914F6CDD1D
     }
 }
-
-extension SystemRandomNumberGenerator: @unchecked Sendable {}

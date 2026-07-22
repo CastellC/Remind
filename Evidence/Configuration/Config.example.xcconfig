@@ -1,0 +1,10 @@
+// Configuration example for Evidence.
+// Copy to Config.xcconfig (gitignored) and fill in real values.
+// Never commit real keys. Never put the service-role key in the iOS client.
+
+SUPABASE_URL = YOUR_SUPABASE_URL
+SUPABASE_ANON_KEY = YOUR_SUPABASE_ANON_KEY
+
+// Optional build setting passthrough used by Info.plist:
+// INFOPLIST_KEY_SUPABASE_URL = $(SUPABASE_URL)
+// INFOPLIST_KEY_SUPABASE_ANON_KEY = $(SUPABASE_ANON_KEY)

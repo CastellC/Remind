@@ -1,0 +1,397 @@
+{
+  "items": [
+    {
+      "id": "00000000-0000-4000-8000-000000000001",
+      "title": "Not the whole story",
+      "body": "A difficult moment is not a complete account of who I am.",
+      "contentType": "groundedAffirmation",
+      "supportedEmotions": [
+        "down",
+        "ashamed",
+        "selfCritical"
+      ],
+      "supportedNeeds": [
+        "perspective",
+        "reassurance"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000002",
+      "title": "Feelings and decisions",
+      "body": "My feelings deserve attention, but they do not have to make every decision.",
+      "contentType": "groundedAffirmation",
+      "supportedEmotions": [
+        "anxious",
+        "overwhelmed",
+        "uncertain"
+      ],
+      "supportedNeeds": [
+        "perspective",
+        "grounding"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000003",
+      "title": "Uncertain and careful",
+      "body": "I can be uncertain and still take one careful step.",
+      "contentType": "groundedAffirmation",
+      "supportedEmotions": [
+        "uncertain",
+        "anxious"
+      ],
+      "supportedNeeds": [
+        "oneSmallStep",
+        "reassurance"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000004",
+      "title": "Reassurance is allowed",
+      "body": "Needing reassurance does not make me weak.",
+      "contentType": "groundedAffirmation",
+      "supportedEmotions": [
+        "anxious",
+        "lonely",
+        "selfCritical"
+      ],
+      "supportedNeeds": [
+        "reassurance",
+        "evidenceOfConnection"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000005",
+      "title": "Doubt is not erasure",
+      "body": "My present self-doubt does not erase past evidence of capability.",
+      "contentType": "groundedAffirmation",
+      "supportedEmotions": [
+        "selfCritical",
+        "ashamed"
+      ],
+      "supportedNeeds": [
+        "evidenceOfCapability",
+        "perspective"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000006",
+      "title": "I have survived before",
+      "body": "I have survived moments that once felt impossible.",
+      "contentType": "groundedAffirmation",
+      "supportedEmotions": [
+        "overwhelmed",
+        "down",
+        "anxious"
+      ],
+      "supportedNeeds": [
+        "evidenceOfGrowth",
+        "reassurance"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000007",
+      "title": "Speak as a friend",
+      "body": "What would I say to someone I care about in this situation?",
+      "contentType": "reflectionPrompt",
+      "supportedEmotions": [
+        "selfCritical",
+        "ashamed",
+        "lonely"
+      ],
+      "supportedNeeds": [
+        "perspective",
+        "quietReflection"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000008",
+      "title": "Known and predicted",
+      "body": "What part of this situation is known, and what part am I predicting?",
+      "contentType": "reflectionPrompt",
+      "supportedEmotions": [
+        "anxious",
+        "uncertain"
+      ],
+      "supportedNeeds": [
+        "perspective",
+        "grounding"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000009",
+      "title": "Delay big decisions",
+      "body": "Delay a major decision until you feel steadier.",
+      "contentType": "manageableAction",
+      "supportedEmotions": [
+        "overwhelmed",
+        "anxious",
+        "angry"
+      ],
+      "supportedNeeds": [
+        "oneSmallStep",
+        "grounding"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000010",
+      "title": "Five-minute action",
+      "body": "Complete one action that takes less than five minutes.",
+      "contentType": "manageableAction",
+      "supportedEmotions": [
+        "overwhelmed",
+        "down",
+        "numb"
+      ],
+      "supportedNeeds": [
+        "oneSmallStep"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000011",
+      "title": "Feet on the floor",
+      "body": "Feel your feet on the floor. Name five things you can see, four you can touch, three you can hear.",
+      "contentType": "groundingExercise",
+      "supportedEmotions": [
+        "anxious",
+        "overwhelmed",
+        "numb"
+      ],
+      "supportedNeeds": [
+        "grounding"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000012",
+      "title": "Slow exhale",
+      "body": "Breathe in gently for a count of four, and out for a count of six. Repeat a few times.",
+      "contentType": "groundingExercise",
+      "supportedEmotions": [
+        "anxious",
+        "angry",
+        "overwhelmed"
+      ],
+      "supportedNeeds": [
+        "grounding"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000013",
+      "title": "Name the feeling",
+      "body": "Silently name the feeling you notice, without judging it. Naming can create a little space.",
+      "contentType": "groundingExercise",
+      "supportedEmotions": [
+        "numb",
+        "overwhelmed",
+        "angry"
+      ],
+      "supportedNeeds": [
+        "grounding",
+        "quietReflection"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000014",
+      "title": "Connection still exists",
+      "body": "Feeling lonely does not mean I am alone in every part of my life.",
+      "contentType": "groundedAffirmation",
+      "supportedEmotions": [
+        "lonely"
+      ],
+      "supportedNeeds": [
+        "evidenceOfConnection",
+        "reassurance"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000015",
+      "title": "Shame is loud",
+      "body": "Shame is loud, but it is not the only voice that knows me.",
+      "contentType": "groundedAffirmation",
+      "supportedEmotions": [
+        "ashamed",
+        "selfCritical"
+      ],
+      "supportedNeeds": [
+        "reassurance",
+        "perspective"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000016",
+      "title": "Growth is uneven",
+      "body": "Growth is often uneven. Progress can include difficult days.",
+      "contentType": "groundedAffirmation",
+      "supportedEmotions": [
+        "down",
+        "selfCritical"
+      ],
+      "supportedNeeds": [
+        "evidenceOfGrowth",
+        "perspective"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000017",
+      "title": "One kind message",
+      "body": "Send or write one kind message to someone you trust, or to yourself.",
+      "contentType": "manageableAction",
+      "supportedEmotions": [
+        "lonely",
+        "down"
+      ],
+      "supportedNeeds": [
+        "evidenceOfConnection",
+        "oneSmallStep"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000018",
+      "title": "Drink water",
+      "body": "Pause for a glass of water and a short stretch before returning to the problem.",
+      "contentType": "manageableAction",
+      "supportedEmotions": [
+        "overwhelmed",
+        "anxious"
+      ],
+      "supportedNeeds": [
+        "oneSmallStep",
+        "grounding"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000019",
+      "title": "What helped before",
+      "body": "What helped even a little the last time I felt something similar?",
+      "contentType": "reflectionPrompt",
+      "supportedEmotions": [
+        "anxious",
+        "down",
+        "overwhelmed"
+      ],
+      "supportedNeeds": [
+        "perspective",
+        "evidenceOfCapability"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000020",
+      "title": "Worthy of care",
+      "body": "I am allowed to need care, even when I feel undeserving of it.",
+      "contentType": "groundedAffirmation",
+      "supportedEmotions": [
+        "ashamed",
+        "lonely",
+        "selfCritical"
+      ],
+      "supportedNeeds": [
+        "reassurance"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000021",
+      "title": "Hold the moment lightly",
+      "body": "This intensity is real, and it may also change. I can hold this moment without deciding everything from inside it.",
+      "contentType": "groundedAffirmation",
+      "supportedEmotions": [
+        "overwhelmed",
+        "angry",
+        "anxious"
+      ],
+      "supportedNeeds": [
+        "perspective",
+        "grounding"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000022",
+      "title": "Body check-in",
+      "body": "Notice your shoulders, jaw, and hands. Soften one place that is holding tension.",
+      "contentType": "groundingExercise",
+      "supportedEmotions": [
+        "anxious",
+        "angry",
+        "overwhelmed"
+      ],
+      "supportedNeeds": [
+        "grounding"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000023",
+      "title": "Write what is observed",
+      "body": "Write one sentence about what you directly observed, separate from what you fear may be happening.",
+      "contentType": "reflectionPrompt",
+      "supportedEmotions": [
+        "anxious",
+        "uncertain"
+      ],
+      "supportedNeeds": [
+        "perspective",
+        "grounding"
+      ],
+      "isActive": true,
+      "version": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000024",
+      "title": "Quiet pause",
+      "body": "Sit quietly for one minute. You do not need to solve anything during this pause.",
+      "contentType": "groundingExercise",
+      "supportedEmotions": [
+        "overwhelmed",
+        "numb",
+        "down"
+      ],
+      "supportedNeeds": [
+        "quietReflection",
+        "grounding"
+      ],
+      "isActive": true,
+      "version": 1
+    }
+  ]
+}

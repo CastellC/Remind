@@ -43,17 +43,17 @@ struct EntryEditorView: View {
 
             if viewModel.entryType == .image {
                 Section {
+                    // Capture outside PhotosPicker's @Sendable label closure (viewModel is @MainActor).
+                    let hasPickedImage = viewModel.pickedImage != nil
+                    let photoPickerTitle = hasPickedImage
+                        ? String(localized: "editor.image.change", defaultValue: "Change photo")
+                        : String(localized: "editor.image.pick", defaultValue: "Choose photo")
                     PhotosPicker(
                         selection: $photoItem,
                         matching: .images,
                         photoLibrary: .shared()
                     ) {
-                        Label(
-                            viewModel.pickedImage == nil
-                                ? String(localized: "editor.image.pick", defaultValue: "Choose photo")
-                                : String(localized: "editor.image.change", defaultValue: "Change photo"),
-                            systemImage: "photo"
-                        )
+                        Label(photoPickerTitle, systemImage: "photo")
                     }
                     if let picked = viewModel.pickedImage {
                         AccessibleImageView(

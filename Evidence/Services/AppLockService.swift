@@ -1,5 +1,6 @@
 import Foundation
 import LocalAuthentication
+import Observation
 import UIKit
 
 /// Device-owner authentication and privacy cover for Evidence.
@@ -34,6 +35,7 @@ enum AppLockError: Error, LocalizedError, Sendable {
 }
 
 @MainActor
+@Observable
 final class AppLockService: AppLockServing {
     /// Seconds in background before the app requires unlock again.
     var backgroundLockInterval: TimeInterval
@@ -161,6 +163,7 @@ final class AppLockService: AppLockServing {
 
 /// Preview / test double.
 @MainActor
+@Observable
 final class MockAppLockService: AppLockServing {
     var isLockEnabled: Bool
     var isLocked: Bool

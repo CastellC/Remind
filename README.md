@@ -216,7 +216,9 @@ xcodebuild test \
 
 Or use Product → Test in Xcode.
 
-Unit coverage currently includes recommendation scoring, safety-language detection, and sync-state helpers under `EvidenceTests/`. UI test target `EvidenceUITests` is wired; add UI flow tests as needed. **This Linux environment cannot execute these tests.**
+Unit coverage under `EvidenceTests/` includes recommendation scoring, safety-language detection, sync conflict resolution, search/filtering, notification schedule generation, image orphan cleanup, authentication state, and local data deletion. `EvidenceUITests` covers launch/tab navigation with `-UITesting` / `-SkipOnboarding` launch arguments, plus stubs for primary flows.
+
+**This Linux cloud environment cannot execute `xcodebuild` or simulator tests.** Open `Evidence.xcodeproj` on macOS with Xcode 16+ to build and run the suite.
 
 ## Local persistence
 

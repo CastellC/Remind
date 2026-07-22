@@ -14,7 +14,7 @@ struct RootView: View {
     var body: some View {
         ZStack {
             Group {
-                if container.appLock.isLocked && container.appLock.isLockEnabled {
+                if container.isAppLocked && container.appLock.isLockEnabled {
                     lockScreen
                 } else if !(profile?.hasCompletedOnboarding ?? false) {
                     OnboardingContainerView()
@@ -23,14 +23,14 @@ struct RootView: View {
                 }
             }
 
-            if container.appLock.shouldShowPrivacyCover {
+            if container.shouldShowPrivacyCover {
                 AppLockCoverView()
                     .transition(.opacity)
                     .zIndex(10)
             }
         }
-        .animation(.easeInOut(duration: 0.2), value: container.appLock.isLocked)
-        .animation(.easeInOut(duration: 0.15), value: container.appLock.shouldShowPrivacyCover)
+        .animation(.easeInOut(duration: 0.2), value: container.isAppLocked)
+        .animation(.easeInOut(duration: 0.15), value: container.shouldShowPrivacyCover)
     }
 
     private var lockScreen: some View {
@@ -47,7 +47,7 @@ struct RootView: View {
             PrimaryButton(
                 title: String(
                     localized: "lock.unlock",
-                    defaultValue: "Unlock with \(container.appLock.biometricDisplayName)"
+                    defaultValue: "Unlock with \(container.biometricDisplayName)"
                 ),
                 isLoading: isUnlocking
             ) {
@@ -82,7 +82,7 @@ struct RootView: View {
     private func unlock() async {
         isUnlocking = true
         unlockFailed = false
-        let success = await container.appLock.unlock()
+        let success = await container.unlockApp()
         unlockFailed = !success
         isUnlocking = false
     }

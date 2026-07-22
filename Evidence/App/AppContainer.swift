@@ -27,6 +27,11 @@ final class AppContainer {
     var guidedContent: [GuidedContentItem] = []
     var hasCompletedInitialSeed = false
 
+    /// Mirrored app-lock UI state so SwiftUI observes changes through `AppContainer`.
+    var isAppLocked = false
+    var shouldShowPrivacyCover = false
+    var biometricDisplayName = "Face ID"
+
     /// Active check-in session state shared between Check-in and Recommendations.
     var activeCheckInID: UUID?
     var preferNeutralGrounding = false
@@ -36,6 +41,9 @@ final class AppContainer {
     init(environment: AppEnvironment, modelContainer: ModelContainer) {
         self.environment = environment
         self.modelContainer = modelContainer
+        self.isAppLocked = environment.appLock.isLocked
+        self.shouldShowPrivacyCover = environment.appLock.shouldShowPrivacyCover
+        self.biometricDisplayName = environment.appLock.biometricDisplayName
 
         let context = modelContainer.mainContext
         self.entryRepository = LocalEvidenceEntryRepository(context: context)
@@ -106,6 +114,28 @@ final class AppContainer {
     var notifications: any NotificationServing { environment.notificationService }
     var safetyDetector: any SafetyLanguageDetecting { environment.safetyDetector }
     var imageStorage: (any ImageStorageServing)? { environment.imageStorage }
+
+    func refreshAppLockState() {
+        isAppLocked = environment.appLock.isLocked
+        shouldShowPrivacyCover = environment.appLock.shouldShowPrivacyCover
+        biometricDisplayName = environment.appLock.biometricDisplayName
+    }
+
+    func handleScenePhaseBackground() {
+        environment.appLock.applicationDidEnterBackground()
+        refreshAppLockState()
+    }
+
+    func handleScenePhaseActive() async {
+        await environment.appLock.applicationWillEnterForeground()
+        refreshAppLockState()
+    }
+
+    func unlockApp() async -> Bool {
+        let success = await environment.appLock.unlock()
+        refreshAppLockState()
+        return success
+    }
 
     func bootstrap() async {
         guard !hasCompletedInitialSeed else { return }

@@ -38,10 +38,10 @@ struct EvidenceApp: App {
     private func handleScenePhase(_ phase: ScenePhase) {
         switch phase {
         case .background:
-            container.appLock.applicationDidEnterBackground()
+            container.handleScenePhaseBackground()
         case .active:
             Task {
-                await container.appLock.applicationWillEnterForeground()
+                await container.handleScenePhaseActive()
             }
         case .inactive:
             break

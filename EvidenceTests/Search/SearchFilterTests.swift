@@ -86,8 +86,8 @@ final class SearchFilterTests: XCTestCase {
         let matching = EvidenceEntry(
             title: "Blue notebook",
             bodyText: "A gift",
-            meaningPromptAnswer: "Someone believed in me",
-            sourceName: "Alex"
+            sourceName: "Alex",
+            meaningPromptAnswer: "Someone believed in me"
         )
         let other = EvidenceEntry(
             title: "Unrelated",
@@ -112,8 +112,8 @@ final class SearchFilterTests: XCTestCase {
     func testCollectionViewModelHidesArchivedUnlessRequested() throws {
         let archived = EvidenceEntry(
             title: "Old",
-            meaningPromptAnswer: "Meaning",
-            isArchived: true
+            isArchived: true,
+            meaningPromptAnswer: "Meaning"
         )
         let active = EvidenceEntry(
             title: "Current",

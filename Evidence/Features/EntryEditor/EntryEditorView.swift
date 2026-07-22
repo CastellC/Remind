@@ -110,8 +110,8 @@ struct EntryEditorView: View {
                     ForEach(Emotion.allCases) { emotion in
                         TagChip(
                             title: emotion.displayName,
-                            isSelected: viewModel.emotions.contains(emotion),
                             systemImage: emotion.symbolName,
+                            isSelected: viewModel.emotions.contains(emotion),
                             onTap: { viewModel.toggleEmotion(emotion) }
                         )
                     }
@@ -122,8 +122,8 @@ struct EntryEditorView: View {
                     ForEach(SupportNeed.allCases) { need in
                         TagChip(
                             title: need.displayName,
-                            isSelected: viewModel.supportNeeds.contains(need),
                             systemImage: need.symbolName,
+                            isSelected: viewModel.supportNeeds.contains(need),
                             onTap: { viewModel.toggleNeed(need) }
                         )
                     }
@@ -182,11 +182,11 @@ struct EntryEditorView: View {
                     FlexibleWrap {
                         ForEach(categories, id: \.id) { category in
                             TagChip(
-                            title: category.name,
-                            isSelected: viewModel.categoryIDs.contains(category.id),
-                            systemImage: category.iconName,
-                            onTap: { viewModel.toggleCategory(category.id) }
-                        )
+                                title: category.name,
+                                systemImage: category.iconName,
+                                isSelected: viewModel.categoryIDs.contains(category.id),
+                                onTap: { viewModel.toggleCategory(category.id) }
+                            )
                         }
                     }
                 }

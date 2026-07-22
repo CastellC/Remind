@@ -120,9 +120,9 @@ final class NotificationScheduleTests: XCTestCase {
 
         let schedule = ReminderSchedule(
             isEnabled: true,
-            frequency: .weekdays,
             deliveryHour: 8,
-            deliveryMinute: 15
+            deliveryMinute: 15,
+            frequency: .weekdays
         )
 
         try await service.reschedule(from: schedule, entries: [], previewMode: .generic)

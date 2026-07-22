@@ -46,16 +46,16 @@ final class AppContainer {
         self.biometricDisplayName = environment.appLock.biometricDisplayName
 
         let context = modelContainer.mainContext
-        self.entryRepository = LocalEvidenceEntryRepository(context: context)
-        self.tagRepository = LocalTagRepository(context: context)
-        self.categoryRepository = LocalCategoryRepository(context: context)
-        self.checkInRepository = LocalCheckInRepository(context: context)
-        self.feedbackRepository = LocalFeedbackRepository(context: context)
-        self.profileRepository = LocalProfileRepository(context: context)
-        self.reminderRepository = LocalReminderRepository(context: context)
-        self.meaningfulDateRepository = LocalMeaningfulDateRepository(context: context)
+        let entryRepository = LocalEvidenceEntryRepository(context: context)
+        let tagRepository = LocalTagRepository(context: context)
+        let categoryRepository = LocalCategoryRepository(context: context)
+        let checkInRepository = LocalCheckInRepository(context: context)
+        let feedbackRepository = LocalFeedbackRepository(context: context)
+        let profileRepository = LocalProfileRepository(context: context)
+        let reminderRepository = LocalReminderRepository(context: context)
+        let meaningfulDateRepository = LocalMeaningfulDateRepository(context: context)
 
-        self.recommendationEngine = environment.makeRecommendationEngine()
+        let recommendationEngine = environment.makeRecommendationEngine()
 
         let imageStorage: any ImageStorageServing = environment.imageStorage
             ?? (try? LocalImageStorageService(uuidProvider: environment.uuidProvider))
@@ -77,9 +77,9 @@ final class AppContainer {
             auth: environment.authentication,
             dateProvider: environment.dateProvider
         )
-        self.syncCoordinator = environment.makeSyncCoordinator(dependencies: syncDependencies)
+        let syncCoordinator = environment.makeSyncCoordinator(dependencies: syncDependencies)
 
-        self.exportService = ExportService(
+        let exportService = ExportService(
             entryRepository: entryRepository,
             tagRepository: tagRepository,
             categoryRepository: categoryRepository,
@@ -91,7 +91,7 @@ final class AppContainer {
             imageStorage: imageStorage
         )
 
-        self.deletionService = DataDeletionService(
+        let deletionService = DataDeletionService(
             entryRepository: entryRepository,
             tagRepository: tagRepository,
             categoryRepository: categoryRepository,
@@ -107,6 +107,19 @@ final class AppContainer {
             remoteEntries: environment.remoteEntrySync,
             dateProvider: environment.dateProvider
         )
+
+        self.entryRepository = entryRepository
+        self.tagRepository = tagRepository
+        self.categoryRepository = categoryRepository
+        self.checkInRepository = checkInRepository
+        self.feedbackRepository = feedbackRepository
+        self.profileRepository = profileRepository
+        self.reminderRepository = reminderRepository
+        self.meaningfulDateRepository = meaningfulDateRepository
+        self.recommendationEngine = recommendationEngine
+        self.syncCoordinator = syncCoordinator
+        self.exportService = exportService
+        self.deletionService = deletionService
     }
 
     var authentication: any AuthenticationServing { environment.authentication }

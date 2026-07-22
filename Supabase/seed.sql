@@ -1,0 +1,9 @@
+-- Evidence seed data
+--
+-- Guided content (grounding techniques, system reminders, canned support copy)
+-- is bundled in the iOS app for MVP and is intentionally not seeded here.
+-- Do not insert guided system content into remote tables unless a future
+-- migration introduces a dedicated remote guided_content table.
+--
+-- User-owned rows (profiles, entries, tags, etc.) are created by authenticated
+-- clients after sign-in; no demo user data is seeded by default.

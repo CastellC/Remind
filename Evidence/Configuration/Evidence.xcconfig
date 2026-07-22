@@ -1,0 +1,8 @@
+// Shared build settings for Evidence.
+// Copy Config.example.xcconfig → Config.xcconfig (gitignored) and fill in real values.
+// Defaults keep local-only mode working when Config.xcconfig is absent.
+
+SUPABASE_URL =
+SUPABASE_ANON_KEY =
+
+#include? "Config.xcconfig"

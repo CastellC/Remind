@@ -2,7 +2,7 @@
 // Merge these into your target's Info.plist / generate Info.plist settings.
 //
 // Required privacy usage string for App Lock (Face ID):
-// NSFaceIDUsageDescription = Unlock Evidence to view your private collection.
+// NSFaceIDUsageDescription = Evidence can lock your collection using Face ID so only you can open it.
 //
 // Supabase public client values (anon key only — never service role):
 

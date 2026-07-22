@@ -59,8 +59,8 @@ actor InMemoryRemoteDatabaseClient: RemoteDatabaseClienting {
     private let decoder = JSONDecoder()
 
     func select<T: Decodable & Sendable>(table: String, since updatedAt: Date?) async throws -> [T] {
-        let rows = store[table]?.values ?? []
-        return try rows.compactMap { try decoder.decode(T.self, from: $0) }
+        guard let tableStore = store[table] else { return [] }
+        return try tableStore.values.map { try decoder.decode(T.self, from: $0) }
     }
 
     func upsert<T: Encodable & Sendable>(_ row: T, table: String) async throws {

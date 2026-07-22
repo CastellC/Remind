@@ -53,8 +53,8 @@ final class DataDeletionTests: XCTestCase {
     private func seedLocalData(resetOnboardingProfile: Bool = true) async throws {
         let profile = AppProfile(
             displayName: "Tester",
-            selectedUseCases: [.rememberKindWords],
-            onboardingCompletedAt: Date(timeIntervalSince1970: 1_700_000_000)
+            onboardingCompletedAt: Date(timeIntervalSince1970: 1_700_000_000),
+            selectedUseCases: [.rememberKindWords]
         )
         try await repos.profile.save(profile)
 

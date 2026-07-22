@@ -60,8 +60,8 @@ extension ModelContainer {
             return try evidencePreview { context in
                 let profile = AppProfile(
                     displayName: "Preview",
-                    selectedUseCases: [.rememberKindWords, .groundWhenAnxious],
-                    onboardingCompletedAt: .now
+                    onboardingCompletedAt: .now,
+                    selectedUseCases: [.rememberKindWords, .groundWhenAnxious]
                 )
                 context.insert(profile)
 

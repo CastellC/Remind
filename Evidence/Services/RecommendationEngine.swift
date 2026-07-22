@@ -491,7 +491,7 @@ private extension RecommendationEngine {
         return scored
     }
 
-    func selectGrounding(from input: RecommendationInput, now: Date) -> RecommendationResult? {
+    mutating func selectGrounding(from input: RecommendationInput, now: Date) -> RecommendationResult? {
         let guidedGrounding = scoreGuidedContent(input: input, now: now, groundingOnly: true)
         if let best = pickBest(from: guidedGrounding) {
             return best

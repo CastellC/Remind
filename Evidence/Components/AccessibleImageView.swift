@@ -1,5 +1,9 @@
 import SwiftUI
 
+#if canImport(UIKit)
+import UIKit
+#endif
+
 /// Displays an entry image using `accessibilityDescription` for VoiceOver.
 struct AccessibleImageView: View {
     let image: Image
@@ -50,7 +54,8 @@ extension AccessibleImageView {
         accessibilityDescription: String? = nil,
         systemImage: String = "photo"
     ) -> some View {
-        RoundedRectangle(cornerRadius: EvidenceTheme.Radius.md, style: .continuous)
+        let label = placeholderAccessibilityLabel(accessibilityDescription)
+        return RoundedRectangle(cornerRadius: EvidenceTheme.Radius.md, style: .continuous)
             .fill(Color.evidenceSurface)
             .overlay {
                 Image(systemName: systemImage)
@@ -61,12 +66,13 @@ extension AccessibleImageView {
             .frame(maxWidth: .infinity)
             .frame(minHeight: 160)
             .accessibilityElement(children: .ignore)
-            .accessibilityLabel(
-                (accessibilityDescription?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false)
-                    ? accessibilityDescription!
-                    : "Image placeholder"
-            )
+            .accessibilityLabel(label)
             .accessibilityAddTraits(.isImage)
+    }
+
+    private static func placeholderAccessibilityLabel(_ accessibilityDescription: String?) -> String {
+        let trimmed = accessibilityDescription?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        return trimmed.isEmpty ? "Image placeholder" : trimmed
     }
 }
 

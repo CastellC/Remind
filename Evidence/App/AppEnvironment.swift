@@ -7,6 +7,7 @@ import Supabase
 
 /// Application-wide configuration and service factory.
 /// Secrets are never hardcoded — values come from Info.plist / xcconfig injection.
+/// Feature screens should depend on `AppContainer` rather than constructing services directly.
 @MainActor
 final class AppEnvironment: ObservableObject {
     struct FeatureFlags: Equatable, Sendable {

@@ -118,7 +118,15 @@ extension Font {
     }
 
     /// Title convenience for feature screens.
-    static func evidenceTitle() -> Font {
-        EvidenceTypography.title
+    static func evidenceTitle(_ size: CGFloat? = nil) -> Font {
+        if let size {
+            return .system(size: size, weight: .semibold, design: .rounded)
+        }
+        return EvidenceTypography.title
+    }
+
+    /// Soft display / brand title used on lock and about screens.
+    static func evidenceDisplay(_ size: CGFloat = 34) -> Font {
+        .system(size: size, weight: .semibold, design: .rounded)
     }
 }

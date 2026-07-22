@@ -2,7 +2,7 @@ import Foundation
 
 /// Internal safety classification for check-ins.
 /// Raw case labels must not be shown directly in user-facing copy.
-enum SafetyState: String, Codable, CaseIterable, Identifiable, Sendable {
+enum SafetyState: String, Codable, CaseIterable, Identifiable, Hashable, Sendable {
     case standard
     case elevatedConcern
     case immediateConcern

@@ -16,7 +16,7 @@ struct MeaningfulDateSettingsView: View {
         Form {
             Section {
                 Picker(
-                    String(localized: "meaningful.entry", defaultValue: "Evidence item"),
+                    String(localized: "meaningful.entry", defaultValue: "Reminder item"),
                     selection: $selectedEntryID
                 ) {
                     Text(String(localized: "meaningful.choose", defaultValue: "Choose…")).tag(Optional<UUID>.none)
@@ -52,7 +52,7 @@ struct MeaningfulDateSettingsView: View {
                 Text(
                     String(
                         localized: "meaningful.explain",
-                        defaultValue: "Remind me around this date. Evidence does not invent “on this day” memories."
+                        defaultValue: "Remind me around this date. Remind does not invent “on this day” memories."
                     )
                 )
             }

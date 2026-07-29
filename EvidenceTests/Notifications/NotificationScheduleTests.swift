@@ -64,7 +64,7 @@ final class NotificationScheduleTests: XCTestCase {
             meaningPromptAnswer: "Meaning",
             genericPreviewOnly: false
         )
-        XCTAssertEqual(content.title, "Evidence")
+        XCTAssertEqual(content.title, "Remind")
         XCTAssertEqual(content.body, NotificationScheduleBuilder.defaultBody)
     }
 
@@ -76,7 +76,7 @@ final class NotificationScheduleTests: XCTestCase {
             meaningPromptAnswer: "Meaning",
             genericPreviewOnly: false
         )
-        XCTAssertEqual(content.title, "Evidence")
+        XCTAssertEqual(content.title, "Remind")
         XCTAssertEqual(content.body, "You are capable")
     }
 
@@ -109,7 +109,7 @@ final class NotificationScheduleTests: XCTestCase {
             meaningPromptAnswer: nil,
             genericPreviewOnly: true
         )
-        XCTAssertEqual(content.title, "Evidence")
+        XCTAssertEqual(content.title, "Remind")
         XCTAssertEqual(content.body, NotificationScheduleBuilder.defaultBody)
     }
 

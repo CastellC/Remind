@@ -38,8 +38,9 @@ struct RootView: View {
             Spacer()
             Text(EvidenceTheme.brandName)
                 .font(.evidenceDisplay())
+                .foregroundStyle(Color.evidenceAccent)
                 .accessibilityAddTraits(.isHeader)
-            Text(String(localized: "lock.subtitle", defaultValue: "Your collection is locked."))
+            Text(EvidenceTheme.tagline)
                 .font(.evidenceBody())
                 .foregroundStyle(EvidenceFallbackColors.muted)
                 .multilineTextAlignment(.center)
@@ -47,7 +48,7 @@ struct RootView: View {
             PrimaryButton(
                 title: String(
                     localized: "lock.unlock",
-                    defaultValue: "Unlock with \(container.biometricDisplayName)"
+                    defaultValue: "Unlock"
                 ),
                 isLoading: isUnlocking
             ) {
@@ -64,9 +65,17 @@ struct RootView: View {
             }
 
             Spacer()
-            PrivacyNoticeView()
-                .padding(.horizontal, EvidenceTheme.Spacing.lg)
-                .padding(.bottom, EvidenceTheme.Spacing.lg)
+            Text(
+                String(
+                    localized: "lock.footer",
+                    defaultValue: "Your collection stays private on this device."
+                )
+            )
+            .font(.evidenceCaption())
+            .foregroundStyle(EvidenceFallbackColors.muted)
+            .multilineTextAlignment(.center)
+            .padding(.horizontal, EvidenceTheme.Spacing.lg)
+            .padding(.bottom, EvidenceTheme.Spacing.lg)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(

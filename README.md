@@ -289,7 +289,7 @@ Excludes archived, pending-deletion, `excludeFromCheckIns`, and untagged random 
 - Off by default; optional Face ID / Touch ID / device passcode via `LocalAuthentication`.
 - Locks after ~30 seconds in background; privacy cover in the app switcher.
 - Failed auth never deletes data.
-- Info.plist key: `NSFaceIDUsageDescription` = *Evidence can lock your collection using Face ID so only you can open it.*
+- Info.plist key: `NSFaceIDUsageDescription` = *Remind can lock your collection using Face ID so only you can open it.*
 
 ## Safety limitations
 

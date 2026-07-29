@@ -6,15 +6,15 @@ struct PrivacyView: View {
             VStack(alignment: .leading, spacing: EvidenceTheme.Spacing.md) {
                 SectionHeader(
                     title: String(localized: "privacy.title", defaultValue: "Privacy"),
-                    subtitle: String(localized: "privacy.subtitle", defaultValue: "Accurate claims about what Evidence does.")
+                    subtitle: String(localized: "privacy.subtitle", defaultValue: "Accurate claims about what Remind does.")
                 )
 
                 privacyPoint(String(localized: "privacy.1", defaultValue: "Entries are saved locally first on your device."))
                 privacyPoint(String(localized: "privacy.2", defaultValue: "Cloud synchronization is optional and requires sign-in."))
                 privacyPoint(String(localized: "privacy.3", defaultValue: "Cloud-synced data is stored in your private Supabase account with row-level security."))
                 privacyPoint(String(localized: "privacy.4", defaultValue: "Media is stored in a private bucket, not a public gallery."))
-                privacyPoint(String(localized: "privacy.5", defaultValue: "Evidence does not sell your data."))
-                privacyPoint(String(localized: "privacy.6", defaultValue: "Evidence does not include advertising trackers or analytics SDKs."))
+                privacyPoint(String(localized: "privacy.5", defaultValue: "Remind does not sell your data."))
+                privacyPoint(String(localized: "privacy.6", defaultValue: "Remind does not include advertising trackers or analytics SDKs."))
                 privacyPoint(String(localized: "privacy.7", defaultValue: "Private entry content is not sent to an AI service."))
                 privacyPoint(String(localized: "privacy.8", defaultValue: "Notification previews are generic by default."))
                 privacyPoint(String(localized: "privacy.9", defaultValue: "App lock can hide your collection behind device authentication."))
@@ -45,7 +45,7 @@ struct SafetyInformationView: View {
                     title: String(localized: "safetyInfo.title", defaultValue: "Safety and support"),
                     subtitle: String(
                         localized: "safetyInfo.subtitle",
-                        defaultValue: "Evidence is a wellness app for personal reflection. It is not a crisis counselor."
+                        defaultValue: "Remind is a wellness app for personal reflection. It is not a crisis counselor."
                     )
                 )
 
@@ -60,7 +60,7 @@ struct SafetyInformationView: View {
                 Text(
                     String(
                         localized: "safetyInfo.local",
-                        defaultValue: "When optional check-in notes include clear danger language, Evidence may pause ordinary recommendations and show supportive next steps. Classifications stay on-device and are not medical conclusions."
+                        defaultValue: "When optional check-in notes include clear danger language, Remind may pause ordinary recommendations and show supportive next steps. Classifications stay on-device and are not medical conclusions."
                     )
                 )
                 .font(.evidenceBody())
@@ -93,7 +93,7 @@ struct AccessibilityStatementView: View {
                     title: String(localized: "a11y.title", defaultValue: "Accessibility"),
                     subtitle: String(
                         localized: "a11y.subtitle",
-                        defaultValue: "Evidence aims for WCAG 2.2 Level AA principles with native iOS accessibility."
+                        defaultValue: "Remind aims for WCAG 2.2 Level AA principles with native iOS accessibility."
                     )
                 )
                 bullet(String(localized: "a11y.1", defaultValue: "VoiceOver labels, values, hints, and traits on interactive controls."))

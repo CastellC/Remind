@@ -2,7 +2,7 @@
 // Merge these into your target's Info.plist / generate Info.plist settings.
 //
 // Required privacy usage string for App Lock (Face ID):
-// NSFaceIDUsageDescription = Evidence can lock your collection using Face ID so only you can open it.
+// NSFaceIDUsageDescription = Remind can lock your collection using Face ID so only you can open it.
 //
 // Supabase public client values (anon key only — never service role):
 
@@ -12,7 +12,7 @@ SUPABASE_ANON_KEY = YOUR_SUPABASE_ANON_KEY
 // Suggested Info.plist entries (set via build settings or Info.plist raw keys):
 // SUPABASE_URL = $(SUPABASE_URL)
 // SUPABASE_ANON_KEY = $(SUPABASE_ANON_KEY)
-// NSFaceIDUsageDescription = Unlock Evidence to view your private collection.
+// NSFaceIDUsageDescription = Unlock Remind to view your private collection.
 //
 // AppEnvironment reads SUPABASE_URL and SUPABASE_ANON_KEY from Bundle.main Info.plist.
 // Missing or placeholder values become empty strings so local-only mode still works.

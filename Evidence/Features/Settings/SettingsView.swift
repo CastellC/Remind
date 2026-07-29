@@ -73,7 +73,7 @@ struct SettingsView: View {
                         Label(String(localized: "settings.about", defaultValue: "About"), systemImage: "info.circle")
                     }
                     NavigationLink(value: AppRoute.howEvidenceWorks) {
-                        Label(String(localized: "settings.how", defaultValue: "How Evidence works"), systemImage: "list.bullet.clipboard")
+                        Label(String(localized: "settings.how", defaultValue: "How Remind works"), systemImage: "list.bullet.clipboard")
                     }
                     Button {
                         confirmReplay = true
@@ -165,13 +165,14 @@ struct AboutView: View {
             VStack(alignment: .leading, spacing: EvidenceTheme.Spacing.md) {
                 Text(EvidenceTheme.brandName)
                     .font(.evidenceDisplay())
+                    .foregroundStyle(Color.evidenceAccent)
                     .accessibilityAddTraits(.isHeader)
                 Text(EvidenceTheme.tagline)
                     .font(.evidenceTitle(22))
                 Text(
                     String(
                         localized: "about.body",
-                        defaultValue: "Evidence helps you preserve and retrieve meaningful reminders of who you are during difficult moments. It is not a social network, nostalgia gallery, or medical tool."
+                        defaultValue: "Remind helps you preserve and retrieve meaningful reminders of who you are during difficult moments. It is not a social network, nostalgia gallery, or medical tool."
                     )
                 )
                 .font(.evidenceBody())
@@ -195,7 +196,7 @@ struct HowEvidenceWorksView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: EvidenceTheme.Spacing.lg) {
                 SectionHeader(
-                    title: String(localized: "how.title", defaultValue: "How Evidence works")
+                    title: String(localized: "how.title", defaultValue: "How Remind works")
                 )
                 step(1, String(localized: "how.1", defaultValue: "Save meaningful evidence — words, accomplishments, photos with meaning."))
                 step(2, String(localized: "how.2", defaultValue: "Explain why future you may need it."))
@@ -203,7 +204,7 @@ struct HowEvidenceWorksView: View {
                 Text(
                     String(
                         localized: "how.note",
-                        defaultValue: "Evidence does not surface random memories. It uses the meaning and tags you choose."
+                        defaultValue: "Remind does not surface random memories. It uses the meaning and tags you choose."
                     )
                 )
                 .font(.evidenceBody())

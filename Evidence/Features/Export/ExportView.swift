@@ -106,7 +106,7 @@ struct DeleteDataView: View {
                 Text(
                     String(
                         localized: "deleteData.footer",
-                        defaultValue: "Deletion is permanent. Evidence will explain the outcome, including partial failures."
+                        defaultValue: "Deletion is permanent. Remind will explain the outcome, including partial failures."
                     )
                 )
             }
@@ -127,7 +127,7 @@ struct DeleteDataView: View {
         }
         .navigationTitle(String(localized: "deleteData.nav", defaultValue: "Delete data"))
         .confirmationDialog(
-            String(localized: "deleteData.local.confirm", defaultValue: "Delete all local Evidence data?"),
+            String(localized: "deleteData.local.confirm", defaultValue: "Delete all local Remind data?"),
             isPresented: $confirmLocal,
             titleVisibility: .visible
         ) {
@@ -139,7 +139,7 @@ struct DeleteDataView: View {
             Text(String(localized: "deleteData.local.message", defaultValue: "This removes entries, images, and schedules from this device."))
         }
         .confirmationDialog(
-            String(localized: "deleteData.cloud.confirm", defaultValue: "Delete cloud Evidence data?"),
+            String(localized: "deleteData.cloud.confirm", defaultValue: "Delete cloud Remind data?"),
             isPresented: $confirmCloud,
             titleVisibility: .visible
         ) {
@@ -204,7 +204,7 @@ struct DeleteAccountView: View {
                 Text(
                     String(
                         localized: "deleteAccount.footer",
-                        defaultValue: "This deletes your account and associated remote content when the server confirms it, and clears local Evidence data."
+                        defaultValue: "This deletes your account and associated remote content when the server confirms it, and clears local Remind data."
                     )
                 )
             }

@@ -97,7 +97,9 @@ struct TodayView: View {
                         }
                     }
 
-                    PrivacyNoticeView()
+                    Text(EvidenceTheme.disclaimer)
+                        .font(.evidenceCaption())
+                        .foregroundStyle(EvidenceFallbackColors.muted)
                 }
                 .padding(EvidenceTheme.Spacing.lg)
             }
@@ -109,8 +111,8 @@ struct TodayView: View {
                 )
                 .ignoresSafeArea()
             )
-            .navigationTitle(EvidenceTheme.brandName)
-            .navigationBarTitleDisplayMode(.large)
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: AppRoute.self) { route in
                 todayDestination(route)
             }
@@ -135,17 +137,14 @@ struct TodayView: View {
 
     private var brandHeader: some View {
         VStack(alignment: .leading, spacing: EvidenceTheme.Spacing.xs) {
+            Text(EvidenceTheme.brandName)
+                .font(.evidenceDisplay())
+                .foregroundStyle(Color.evidenceAccent)
+                .accessibilityAddTraits(.isHeader)
+
             Text(EvidenceTheme.tagline)
-                .font(.evidenceTitle(24))
-                .foregroundStyle(EvidenceFallbackColors.ink)
-            Text(
-                String(
-                    localized: "today.intro",
-                    defaultValue: "When it is hard to remember your value, return to evidence you chose."
-                )
-            )
-            .font(.evidenceBody())
-            .foregroundStyle(EvidenceFallbackColors.muted)
+                .font(.evidenceBody())
+                .foregroundStyle(EvidenceFallbackColors.muted)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .accessibilityElement(children: .combine)

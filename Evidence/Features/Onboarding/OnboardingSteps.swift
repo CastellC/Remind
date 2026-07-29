@@ -24,7 +24,7 @@ struct HowItWorksOnboardingView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: EvidenceTheme.Spacing.lg) {
                 SectionHeader(
-                    title: String(localized: "onboarding.how.title", defaultValue: "How Evidence works"),
+                    title: String(localized: "onboarding.how.title", defaultValue: "How Remind works"),
                     subtitle: String(
                         localized: "onboarding.how.subtitle",
                         defaultValue: "Three calm steps when you need them."
@@ -38,7 +38,7 @@ struct HowItWorksOnboardingView: View {
                 Text(
                     String(
                         localized: "onboarding.how.note",
-                        defaultValue: "Evidence does not surface random memories. It uses the meaning and tags you choose."
+                        defaultValue: "Remind does not surface random memories. It uses the meaning and tags you choose."
                     )
                 )
                 .font(.evidenceBody())
@@ -92,8 +92,8 @@ struct PrivacyOnboardingView: View {
         String(localized: "onboarding.privacy.2", defaultValue: "Cloud synchronization is optional."),
         String(localized: "onboarding.privacy.3", defaultValue: "Cloud-synced data stays in your private account."),
         String(localized: "onboarding.privacy.4", defaultValue: "Media is stored in a private bucket when sync is on."),
-        String(localized: "onboarding.privacy.5", defaultValue: "Evidence does not sell your data."),
-        String(localized: "onboarding.privacy.6", defaultValue: "Evidence does not use advertising trackers."),
+        String(localized: "onboarding.privacy.5", defaultValue: "Remind does not sell your data."),
+        String(localized: "onboarding.privacy.6", defaultValue: "Remind does not use advertising trackers."),
         String(localized: "onboarding.privacy.7", defaultValue: "Private content is not sent to an AI service."),
         String(localized: "onboarding.privacy.8", defaultValue: "Notification previews are generic by default."),
         String(localized: "onboarding.privacy.9", defaultValue: "App lock can be enabled.")
@@ -264,7 +264,7 @@ struct NotificationSetupOnboardingView: View {
                     title: String(localized: "onboarding.notifications.title", defaultValue: "Optional reminders"),
                     subtitle: String(
                         localized: "onboarding.notifications.body",
-                        defaultValue: "Evidence can gently remind you that your collection is here. Choose a schedule before the system asks for permission."
+                        defaultValue: "Remind can gently remind you that your collection is here. Choose a schedule before the system asks for permission."
                     )
                 )
 
@@ -370,7 +370,7 @@ struct CloudSyncOnboardingView: View {
                     title: String(localized: "onboarding.sync.title", defaultValue: "Optional cloud sync"),
                     subtitle: String(
                         localized: "onboarding.sync.body",
-                        defaultValue: "Evidence works without an account. Signing in enables private synchronization across your devices."
+                        defaultValue: "Remind works without an account. Signing in enables private synchronization across your devices."
                     )
                 )
                 Label(

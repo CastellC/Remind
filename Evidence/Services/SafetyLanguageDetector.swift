@@ -124,10 +124,10 @@ struct SafetyContentConfiguration: Codable, Equatable, Sendable {
             "mind control"
         ],
         immediateSupportTitle: "You may need support right now",
-        immediateSupportBody: "Evidence may not be enough for what you are going through. If you are in immediate danger, contact local emergency services. Consider reaching out to someone you trust or a qualified professional.",
+        immediateSupportBody: "Remind may not be enough for what you are going through. If you are in immediate danger, contact local emergency services. Consider reaching out to someone you trust or a qualified professional.",
         elevatedSupportTitle: "It may help to slow down",
         elevatedSupportBody: "That sounds frightening. It may help to slow down and separate what you directly observed from what you fear may be happening.",
-        disclaimer: "Evidence supports personal reflection and grounding. It does not diagnose conditions, provide medical treatment, or replace professional care."
+        disclaimer: "Remind supports personal reflection and grounding. It does not diagnose conditions, provide medical treatment, or replace professional care."
     )
 }
 

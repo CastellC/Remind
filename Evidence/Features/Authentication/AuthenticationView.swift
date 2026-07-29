@@ -217,7 +217,7 @@ struct MagicLinkView: View {
                 Text(
                     String(
                         localized: "auth.magic.footer",
-                        defaultValue: "We’ll email a sign-in link. Evidence does not require a password."
+                        defaultValue: "We’ll email a sign-in link. Remind does not require a password."
                     )
                 )
             }

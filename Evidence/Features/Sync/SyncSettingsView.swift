@@ -85,7 +85,7 @@ struct SyncSettingsView: View {
                 Text(
                     String(
                         localized: "sync.limitation",
-                        defaultValue: "Conflict resolution uses timestamps. When both sides changed, Evidence may keep a local copy before overwriting."
+                        defaultValue: "Conflict resolution uses timestamps. When both sides changed, Remind may keep a local copy before overwriting."
                     )
                 )
                 .font(.evidenceCaption())

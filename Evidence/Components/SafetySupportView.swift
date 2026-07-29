@@ -113,7 +113,7 @@ struct SafetySupportView: View {
                     SecondaryButton(
                         title: "Contact someone I trust",
                         systemImage: "person.crop.circle",
-                        accessibilityHintText: "Use your own contacts. Evidence does not contact anyone automatically."
+                        accessibilityHintText: "Use your own contacts. Remind does not contact anyone automatically."
                     ) {
                         onAction(.messageTrustedContact)
                     }
@@ -172,7 +172,7 @@ struct SafetySupportView: View {
                     SecondaryButton(
                         title: "Contact someone I trust",
                         systemImage: "person.crop.circle",
-                        accessibilityHintText: "Use your own contacts. Evidence does not contact anyone automatically."
+                        accessibilityHintText: "Use your own contacts. Remind does not contact anyone automatically."
                     ) {
                         onAction(.messageTrustedContact)
                     }

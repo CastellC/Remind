@@ -14,7 +14,7 @@ struct PrivacyNoticeView: View {
         ("iphone", "Entries are saved on this device first."),
         ("icloud", "Cloud synchronization is optional and uses your private account."),
         ("lock.shield", "Synced media is stored in a private bucket."),
-        ("hand.raised", "Evidence does not sell your data or use advertising trackers."),
+        ("hand.raised", "Remind does not sell your data or use advertising trackers."),
         ("brain", "Private content is not sent to an AI service."),
         ("bell.badge", "Notification previews are generic by default."),
         ("lock", "App lock can be enabled with Face ID, Touch ID, or your device passcode.")

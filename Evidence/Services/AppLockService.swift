@@ -130,7 +130,7 @@ final class AppLockService: AppLockServing {
             return true
         }
         let context = contextFactory()
-        let reason = "Unlock Evidence to view your private collection."
+        let reason = "Unlock Remind to view your private collection."
         do {
             let success = try await context.evaluatePolicy(
                 .deviceOwnerAuthentication,

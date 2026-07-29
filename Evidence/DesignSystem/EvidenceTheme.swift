@@ -6,15 +6,15 @@ import UIKit
 
 // MARK: - Theme tokens
 
-/// Calm, warm, restrained visual tokens for Evidence.
-/// Prefer system semantic colors; accent is a soft teal (not purple).
+/// Calm, warm, restrained visual tokens for Remind.
+/// Prefer system semantic colors; accent is a warm orange (not purple).
 enum EvidenceTheme {
-    static let brandName = "Evidence"
+    static let brandName = "Remind"
     static let tagline = "Remember what is true"
 
     static let disclaimer = String(
         localized: "disclaimer.support",
-        defaultValue: "Evidence supports personal reflection and grounding. It does not diagnose conditions, provide medical treatment, or replace professional care."
+        defaultValue: "Remind supports reflection. It does not replace professional care."
     )
 
     /// Practical minimum interactive target (WCAG / HIG).
@@ -60,22 +60,22 @@ enum EvidenceFallbackColors {
     static let canvasDark = Color(red: 0.11, green: 0.12, blue: 0.13)
     static let ink = Color(red: 0.18, green: 0.17, blue: 0.16)
     static let muted = Color(red: 0.42, green: 0.40, blue: 0.38)
-    /// Soft teal accent — warm earth, not purple.
-    static let accent = Color(red: 0.28, green: 0.42, blue: 0.40)
+    /// Warm orange accent — matches Remind Figma tokens (#FF9900).
+    static let accent = Color(red: 1.0, green: 0.60, blue: 0.0)
     static let softFill = Color(red: 0.90, green: 0.89, blue: 0.86)
 }
 
 // MARK: - Colors
 
 extension Color {
-    /// Soft teal accent — warm and restrained in light and dark mode.
+    /// Warm orange accent — matches Remind Figma token (#FF9900).
     static var evidenceAccent: Color {
         #if canImport(UIKit)
         Color(UIColor { traits in
             if traits.userInterfaceStyle == .dark {
-                return UIColor(red: 0.45, green: 0.72, blue: 0.70, alpha: 1)
+                return UIColor(red: 1.0, green: 0.72, blue: 0.28, alpha: 1)
             }
-            return UIColor(red: 0.22, green: 0.52, blue: 0.50, alpha: 1)
+            return UIColor(red: 1.0, green: 0.60, blue: 0.0, alpha: 1)
         })
         #else
         EvidenceFallbackColors.accent

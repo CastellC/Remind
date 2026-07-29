@@ -474,7 +474,7 @@ struct EntryDetailView: View {
                 ProgressView()
             }
         }
-        .navigationTitle(String(localized: "entry.detail.nav", defaultValue: "Evidence"))
+        .navigationTitle(String(localized: "entry.detail.nav", defaultValue: "Remind"))
         .navigationBarTitleDisplayMode(.inline)
         .navigationDestination(item: $editorPresentation) { presentation in
             EntryEditorView(presentation: presentation)

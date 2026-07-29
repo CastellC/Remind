@@ -25,7 +25,7 @@ struct AppLockSettingsView: View {
                 Text(
                     String(
                         localized: "appLock.footer",
-                        defaultValue: "Uses Face ID, Touch ID, or your device passcode. Evidence does not create a separate password."
+                        defaultValue: "Uses Face ID, Touch ID, or your device passcode. Remind does not create a separate password."
                     )
                 )
             }
@@ -110,12 +110,13 @@ struct AppLockCoverView: View {
                     .accessibilityHidden(true)
                 Text(EvidenceTheme.brandName)
                     .font(.evidenceDisplay(32))
+                    .foregroundStyle(Color.evidenceAccent)
                 Text(String(localized: "appLock.cover", defaultValue: "Your collection is private."))
                     .font(.evidenceBody())
                     .foregroundStyle(EvidenceFallbackColors.muted)
             }
             .accessibilityElement(children: .combine)
         }
-        .accessibilityLabel(String(localized: "appLock.cover.a11y", defaultValue: "Evidence is locked. Content is hidden."))
+        .accessibilityLabel(String(localized: "appLock.cover.a11y", defaultValue: "Remind is locked. Content is hidden."))
     }
 }

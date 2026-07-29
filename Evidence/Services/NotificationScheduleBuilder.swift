@@ -52,14 +52,14 @@ enum NotificationScheduleBuilder {
         let effectiveMode: NotificationPreviewMode = genericPreviewOnly ? .generic : mode
         switch effectiveMode {
         case .generic:
-            return PreviewContent(title: "Evidence", body: defaultBody)
+            return PreviewContent(title: "Remind", body: defaultBody)
         case .titleOnly:
             return PreviewContent(
-                title: "Evidence",
+                title: "Remind",
                 body: nonEmpty(entryTitle) ?? defaultBody
             )
         case .fullContent:
-            let title = nonEmpty(entryTitle) ?? "Evidence"
+            let title = nonEmpty(entryTitle) ?? "Remind"
             if let body = nonEmpty(entryBody) {
                 return PreviewContent(title: title, body: body)
             }

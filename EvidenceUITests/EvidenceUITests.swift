@@ -28,7 +28,7 @@ final class EvidenceUITests: XCTestCase {
         let settings = app.tabBars.buttons["Settings"]
 
         let appeared = today.waitForExistence(timeout: 8)
-            || app.staticTexts["Evidence"].waitForExistence(timeout: 8)
+            || app.staticTexts["Remind"].waitForExistence(timeout: 8)
             || app.buttons["Skip for now"].waitForExistence(timeout: 2)
 
         XCTAssertTrue(appeared, "App should show tabs, brand, or onboarding skip")
@@ -48,7 +48,7 @@ final class EvidenceUITests: XCTestCase {
         let todayTab = app.tabBars.buttons["Today"]
         XCTAssertTrue(
             todayTab.waitForExistence(timeout: 8)
-                || app.staticTexts["Evidence"].waitForExistence(timeout: 5),
+                || app.staticTexts["Remind"].waitForExistence(timeout: 5),
             "After skip (or when already complete), main UI should appear"
         )
     }

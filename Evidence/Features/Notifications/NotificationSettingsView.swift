@@ -26,7 +26,7 @@ struct NotificationSettingsView: View {
                     isOn: $isEnabled
                 )
             } footer: {
-                Text(String(localized: "notifications.explain", defaultValue: "Evidence asks for permission only when you turn reminders on."))
+                Text(String(localized: "notifications.explain", defaultValue: "Remind asks for permission only when you turn reminders on."))
             }
 
             if isEnabled {

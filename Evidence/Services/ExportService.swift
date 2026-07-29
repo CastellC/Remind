@@ -1,6 +1,6 @@
 import Foundation
 
-/// Exports local Evidence data to a temporary archive folder / zip-compatible package.
+/// Exports local Remind data to a temporary archive folder / zip-compatible package.
 @MainActor
 protocol ExportServing {
     func exportLocalArchive() async throws -> URL

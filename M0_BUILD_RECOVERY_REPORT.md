@@ -2,9 +2,11 @@
 
 **Report date:** 2026-10-28 (Pacific/Honolulu)  
 **Branch:** `fix/remind-m0-build-recovery`  
-**Commit:** `220f92b` (*Start M0 build recovery: PhotosPicker fix, scheme, Remind branding*)  
+**Commits:** `220f92b` (code) · `bc96ded` (report SHA pin)  
 **Base:** `main` @ `5fd214c` (*Sync app branding and accent with Remind Figma updates*)  
-**Repository:** `https://github.com/castellc/remind`
+**Repository:** `https://github.com/CastellC/Remind`  
+**Branch push:** Succeeded to `origin/fix/remind-m0-build-recovery`  
+**PR creation:** Agent `ManagePullRequest` unauthorized (Origin lookup failed). Open manually: https://github.com/CastellC/Remind/pull/new/fix/remind-m0-build-recovery
 
 > **M0 is not complete.** This cloud agent host cannot run Xcode. Preparatory fixes were applied and documented; build, test, scheme listing via `xcodebuild`, simulator launch, and offline smoke verification remain **blocked** until a macOS + Xcode environment is available.
 

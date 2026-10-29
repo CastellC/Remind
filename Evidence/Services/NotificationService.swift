@@ -17,7 +17,7 @@ enum NotificationServiceError: Error, LocalizedError, Sendable {
     var errorDescription: String? {
         switch self {
         case .authorizationDenied:
-            return "Notifications are turned off for Evidence. You can enable them in Settings."
+            return "Notifications are turned off for Remind. You can enable them in Settings."
         }
     }
 }

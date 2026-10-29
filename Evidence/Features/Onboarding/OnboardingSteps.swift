@@ -139,7 +139,7 @@ struct UseCaseSelectionOnboardingView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: EvidenceTheme.Spacing.md) {
                 SectionHeader(
-                    title: String(localized: "onboarding.use.title", defaultValue: "How do you hope to use Evidence?"),
+                    title: String(localized: "onboarding.use.title", defaultValue: "How do you hope to use Remind?"),
                     subtitle: String(
                         localized: "onboarding.use.subtitle",
                         defaultValue: "Choose up to three. You can change this later."

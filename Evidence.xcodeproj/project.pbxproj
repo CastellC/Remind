@@ -353,8 +353,8 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Evidence;
-				INFOPLIST_KEY_NSFaceIDUsageDescription = "Evidence can lock your collection using Face ID so only you can open it.";
+				INFOPLIST_KEY_CFBundleDisplayName = Remind;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Remind can lock your collection using Face ID so only you can open it.";
 				INFOPLIST_KEY_SUPABASE_ANON_KEY = "$(SUPABASE_ANON_KEY)";
 				INFOPLIST_KEY_SUPABASE_URL = "$(SUPABASE_URL)";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -386,8 +386,8 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Evidence;
-				INFOPLIST_KEY_NSFaceIDUsageDescription = "Evidence can lock your collection using Face ID so only you can open it.";
+				INFOPLIST_KEY_CFBundleDisplayName = Remind;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Remind can lock your collection using Face ID so only you can open it.";
 				INFOPLIST_KEY_SUPABASE_ANON_KEY = "$(SUPABASE_ANON_KEY)";
 				INFOPLIST_KEY_SUPABASE_URL = "$(SUPABASE_URL)";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

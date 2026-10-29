@@ -20,7 +20,7 @@ struct MeaningPromptView: View {
                 .fixedSize(horizontal: false, vertical: true)
                 .accessibilityAddTraits(.isHeader)
 
-            Text("This answer helps Evidence retrieve this later for the right moment.")
+            Text("This answer helps Remind retrieve this later for the right moment.")
                 .font(EvidenceTypography.footnote)
                 .foregroundStyle(Color.evidenceSecondaryLabel)
                 .fixedSize(horizontal: false, vertical: true)

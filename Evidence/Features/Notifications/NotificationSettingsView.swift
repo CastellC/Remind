@@ -139,7 +139,7 @@ struct NotificationSettingsView: View {
                 if !granted {
                     statusMessage = String(
                         localized: "notifications.denied",
-                        defaultValue: "Notifications are off for Evidence. You can enable them in iOS Settings."
+                        defaultValue: "Notifications are off for Remind. You can enable them in iOS Settings."
                     )
                     isEnabled = false
                 }

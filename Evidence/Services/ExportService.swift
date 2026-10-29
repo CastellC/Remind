@@ -278,8 +278,8 @@ struct ExportService: ExportServing {
         }
 
         let readme = """
-        Evidence export
-        ===============
+        Remind export
+        =============
         This folder contains export.json (structured data) and images/ (local media copies).
 
         To create a ZIP on macOS or iOS, compress this folder with the Share sheet or Finder.

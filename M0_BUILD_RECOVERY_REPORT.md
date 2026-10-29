@@ -2,6 +2,7 @@
 
 **Report date:** 2026-10-28 (Pacific/Honolulu)  
 **Branch:** `fix/remind-m0-build-recovery`  
+**Commit:** `220f92b` (*Start M0 build recovery: PhotosPicker fix, scheme, Remind branding*)  
 **Base:** `main` @ `5fd214c` (*Sync app branding and accent with Remind Figma updates*)  
 **Repository:** `https://github.com/castellc/remind`
 
@@ -42,7 +43,7 @@
 | PR #3 inspected | [Fix PhotosPicker MainActor isolation](https://github.com/CastellC/Remind/pull/3) — draft, `MERGEABLE`, head `cursor/fix-photospicker-sendable-6949` |
 | PR #3 merge strategy | **Not merged blindly.** Diff reviewed; same minimal fix cherry-applied onto this branch |
 
-Commit SHA for this report’s code changes will match the tip of `fix/remind-m0-build-recovery` after push (see git log on that branch).
+Tip commit for these preparatory changes: `220f92b59887487172f2dbf3f8c5aa3231f7650e`.
 
 ---
 

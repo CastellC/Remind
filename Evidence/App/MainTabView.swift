@@ -1,10 +1,11 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @State private var selectedTab: MainTab = .today
+    @Environment(AppContainer.self) private var container
 
     var body: some View {
-        TabView(selection: $selectedTab) {
+        @Bindable var container = container
+        TabView(selection: $container.selectedMainTab) {
             TodayView()
                 .tabItem {
                     Label(

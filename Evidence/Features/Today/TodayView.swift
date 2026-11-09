@@ -60,8 +60,9 @@ struct TodayView: View {
                         SecondaryButton(
                             title: String(localized: "today.openCollection", defaultValue: "Open my collection")
                         ) {
-                            viewModel.showCollectionHint = true
+                            container.selectedMainTab = .collection
                         }
+                        .accessibilityIdentifier("today.openCollection")
 
                         SecondaryButton(
                             title: String(localized: "today.addEvidence", defaultValue: "Add evidence")
@@ -116,19 +117,6 @@ struct TodayView: View {
             .navigationDestination(for: AppRoute.self) { route in
                 todayDestination(route)
             }
-            .alert(
-                String(localized: "today.collectionHint.title", defaultValue: "Your collection"),
-                isPresented: $viewModel.showCollectionHint
-            ) {
-                Button(String(localized: "action.ok", defaultValue: "OK"), role: .cancel) {}
-            } message: {
-                Text(
-                    String(
-                        localized: "today.collectionHint.message",
-                        defaultValue: "Use the Collection tab to browse, search, and manage everything you have saved."
-                    )
-                )
-            }
             .onAppear {
                 viewModel.refresh(entries: visibleEntries)
             }
@@ -174,8 +162,6 @@ struct TodayView: View {
 @Observable
 @MainActor
 final class TodayViewModel {
-    var showCollectionHint = false
-
     func refresh(entries: [EvidenceEntry]) {
         _ = entries
     }

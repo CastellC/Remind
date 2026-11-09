@@ -32,6 +32,9 @@ final class AppContainer {
     var shouldShowPrivacyCover = false
     var biometricDisplayName = "Face ID"
 
+    /// Selected root tab so features (e.g. Today) can navigate to Collection.
+    var selectedMainTab: MainTab = .today
+
     /// Active check-in session state shared between Check-in and Recommendations.
     var activeCheckInID: UUID?
     var preferNeutralGrounding = false
